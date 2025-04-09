@@ -28,6 +28,7 @@ def request_onload(api_key,api_version,api_province):
 
 def min_max_price(api_key,api_version,api_province):
     count=0
+    flag_elem=True
     while True:
         url = f"https://api.getbuildify.com/{api_version}/{api_province}/search_listings?page={count}&perPage=1000&filterQuery=minBeds%3E%3D1%20AND%20minBaths%3E%3D1&retrieveAttributes=startPrice"
 
@@ -39,7 +40,6 @@ def min_max_price(api_key,api_version,api_province):
         req=requests.get(url, headers=headers)
         req_json=json.loads(req.text)
         result=req_json["results"]
-        flag_elem=True
         for elem in result:
             if isinstance(elem["startPrice"], int) and not isinstance(elem["startPrice"], bool):
                 if flag_elem==True:
