@@ -95,25 +95,26 @@ def get_data_from_api(api_version, api_province, api_key):
         return response.json()
     return None  # В случае ошибки вернётся None
 
-@app.route('/api/modal_features_data', methods=['GET'])
-def modal_features_get_data():
-     # Получаем параметр page из строки запроса
-    Object = request.args.get('object')
-    if Object is None:
-        return jsonify({"error": "Parameter 'page' is required"}), 400
+# @app.route('/api/modal_features_data', methods=['GET'])
+# def modal_features_get_data():
+#      # Получаем параметр page из строки запроса
+#     Object = request.args.get('object')
+#     if Object is None:
+#         return jsonify({"error": "Parameter 'page' is required"}), 400
     
-    api_version = request.args.get('api_version')
-    api_province = request.args.get('api_province')
-    api_key = request.args.get('api_key')
+#     api_version = request.args.get('api_version')
+#     api_province = request.args.get('api_province')
+#     api_key = request.args.get('api_key')
 
-    url = f'https://api.getbuildify.com/{api_version}/{api_province}/listing?id={Object}&retrieveAttributes=architects%2Cbuilders%2CinteriorDesigners%2CmarketingCompanies%2CsalesCompanies&referrences=architects%2Cbuilders%2CinteriorDesigners%2CmarketingCompanies%2CsalesCompanies'
-    headers = {
-        "accept": "application/json",
-        "x-api-key": api_key
-    }
-    response = requests.get(url, headers=headers)
-    # Возвращаем JSON
-    return response.text
+#     url = f'https://api.getbuildify.com/{api_version}/{api_province}/listing?id={Object}&retrieveAttributes=architects%2Cbuilders%2CinteriorDesigners%2CmarketingCompanies%2CsalesCompanies&referrences=architects%2Cbuilders%2CinteriorDesigners%2CmarketingCompanies%2CsalesCompanies'
+#     headers = {
+#         "accept": "application/json",
+#         "x-api-key": api_key
+#     }
+#     response = requests.get(url, headers=headers)
+#     # Возвращаем JSON
+#     print("Response.text:"+response.text)
+#     return response.text
 
 def parser_is_move_in_ready(api_version,api_province,api_key,end_url,data,page):
     count = 0

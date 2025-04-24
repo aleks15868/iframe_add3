@@ -22,8 +22,8 @@ document.querySelector('.apartment_listing').addEventListener('click', async fun
             behavior: 'smooth'
         });
         background.style.opacity = "1";
-        let modal_property_features = await features_parser(json_element_buildify[dataIndex]["objectID"]);
-        document.querySelector(".modal_body .modal_details").innerHTML=modal_property_features;
+        // let modal_property_features = await features_parser(json_element_buildify[dataIndex]["objectID"]);
+        // document.querySelector(".modal_body .modal_details").innerHTML=modal_property_features;
     }
 });
 background.addEventListener('click', async function (event) {
@@ -58,35 +58,35 @@ background_slider.addEventListener('click', async function (event) {
         background_slider.style.display = "none";
     }
 });
-async function features_parser(object){
-    let array_json={
-        "architects":["/static/image/icon_architects.svg","Architects"],
-        "builders":["/static/image/icon_builder.svg","Builder"],
-        "interiorDesigners":["/static/image/icon_interior_designer.svg","Interior Designer"],
-        "marketingCompanies":["/static/image/icon_marketers.svg","Marketers"],
-        "salesCompanies":["/static/image/icon_sales.svg","Sales Company"] 
-        }
-    let json_conf=`&api_version=${api_version}&api_province=${api_province}&api_key=${api_key}`;
-    const response = await fetch(`/api/modal_features_data?object=${object}${json_conf}`);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+// async function features_parser(object){
+//     let array_json={
+//         "architects":["/static/image/icon_architects.svg","Architects"],
+//         "builders":["/static/image/icon_builder.svg","Builder"],
+//         "interiorDesigners":["/static/image/icon_interior_designer.svg","Interior Designer"],
+//         "marketingCompanies":["/static/image/icon_marketers.svg","Marketers"],
+//         "salesCompanies":["/static/image/icon_sales.svg","Sales Company"] 
+//         }
+//     let json_conf=`&api_version=${api_version}&api_province=${api_province}&api_key=${api_key}`;
+//     const response = await fetch(`/api/modal_features_data?object=${object}${json_conf}`);
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
 
-        const data = await response.json();
-    let result_features="";
-    Object.keys(array_json).forEach(key => {
-        data[key].forEach(item =>{
-            result_features+=`<div>
-                    <div class="modal_title"><span><img src="${array_json[key][0]}"></span>${array_json[key][1]}</div>  
-                    <div class="modal_content">${item["name"] || "TBD"}</div>  
-                </div>`;
-        });
-    });
-    if (result_features != ""){
-        result_features=`<div class="modal_list">${result_features}</div>`
-    }
-    return result_features;
-}
+//         const data = await response.json();
+//     let result_features="";
+//     Object.keys(array_json).forEach(key => {
+//         data[key].forEach(item =>{
+//             result_features+=`<div>
+//                     <div class="modal_title"><span><img src="${array_json[key][0]}"></span>${array_json[key][1]}</div>  
+//                     <div class="modal_content">${item["name"] || "TBD"}</div>  
+//                 </div>`;
+//         });
+//     });
+//     if (result_features != ""){
+//         result_features=`<div class="modal_list">${result_features}</div>`
+//     }
+//     return result_features;
+// }
 async function replacing_information_in_a_modal(array_json){
 if(array_json["photos"].length !== 0 ){
     jQuery(document).ready(function($) {
@@ -271,16 +271,6 @@ if(array_json["photos"].length !== 0 ){
                         <!--
                         <p>Lorem ipsum dolor sit amet, homero debitis temporibus in mei, at sit voluptua antiopam hendrerit. Lorem epicuri eu per. Mediocrem torquatos deseruisse te eum commodo.</p>
                         -->
-                        <div class="modal_details">
-                        <div class="modal_loader_body">
-                            <div class="iframe_loader">
-                                <span class="iframe_bar"></span>
-                                <span class="iframe_bar"></span>
-                                <span class="iframe_bar"></span>
-                            </div>
-                        </div>
-                
-                        </div>
                         ${modal_amenities}
                         <div class="modal_property_details">
                             <h3>Property details</h3>
